@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { authApi } from '../../lib/api';
+import { authApi } from '../lib/api';
 
 export default function AdminGuard({ children }) {
   const [status, setStatus] = useState('checking'); // checking | allowed | denied
