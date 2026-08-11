@@ -67,6 +67,15 @@ export const getMyOrders = asyncHandler(async (req, res) => {
   res.json({ success: true, orders });
 });
 
+// @desc    Get all orders (admin only)
+// @route   GET /api/orders
+export const getAllOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find()
+    .populate('user', 'name email')
+    .sort({ createdAt: -1 });
+  res.json({ success: true, orders });
+});
+
 // @desc    Get order by id
 // @route   GET /api/orders/:id
 export const getOrderById = asyncHandler(async (req, res) => {

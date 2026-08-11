@@ -46,6 +46,9 @@ export default function Navbar() {
           <Link href="/orders" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
             Orders
           </Link>
+          <Link href="/admin" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
+            Admin
+          </Link>
           <Link href="/cart" className="relative hover:text-marigold-400 transition-colors focus-ring">
             Cart
             {itemCount > 0 && (

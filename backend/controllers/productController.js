@@ -49,6 +49,16 @@ export const getProducts = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    Get all products for admin/seller management (includes inactive)
+// @route   GET /api/products/admin/all
+export const getAllProductsForAdmin = asyncHandler(async (req, res) => {
+  const filter = req.user.role === 'admin' ? {} : { seller: req.user._id };
+  const products = await Product.find(filter)
+    .populate('category', 'name slug')
+    .sort({ createdAt: -1 });
+  res.json({ success: true, products });
+});
+
 // @desc    Get single product by slug or id
 // @route   GET /api/products/:idOrSlug
 export const getProductByIdOrSlug = asyncHandler(async (req, res) => {

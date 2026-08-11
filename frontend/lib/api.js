@@ -16,16 +16,23 @@ export const productApi = {
   list: (params) => api.get('/products', { params }),
   get: (idOrSlug) => api.get(`/products/${idOrSlug}`),
   review: (id, data) => api.post(`/products/${id}/reviews`, data),
+  adminList: () => api.get('/products/admin/all'),
+  create: (data) => api.post('/products', data),
+  update: (id, data) => api.put(`/products/${id}`, data),
+  remove: (id) => api.delete(`/products/${id}`),
 };
 
 export const orderApi = {
   create: (data) => api.post('/orders', data),
   my: () => api.get('/orders/my'),
   get: (id) => api.get(`/orders/${id}`),
+  adminList: () => api.get('/orders'),
+  updateStatus: (id, status) => api.put(`/orders/${id}/status`, { status }),
 };
 
 export const categoryApi = {
   list: () => api.get('/categories'),
+  create: (data) => api.post('/categories', data),
 };
 
 export default api;
