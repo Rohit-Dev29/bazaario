@@ -28,12 +28,14 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 shadow-lg">
       <div className="bg-indigo-900 text-white">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-5">
-       <Link href="/" className="shrink-0 focus-ring leading-tight">
+<Link href="/" className="shrink-0 focus-ring leading-tight max-w-[160px] sm:max-w-none">
             <span className="font-display text-3xl font-700 tracking-tight block">
               Bazaar<span className="text-marigold-400">io</span>
             </span>
-            <span className="block text-[11px] font-medium text-white/60 tracking-wide">
-              Presented by Rohit Verma
+            <span className="marquee-wrap block">
+              <span className="marquee-text font-display font-extrabold text-[12px] text-marigold-400 tracking-wide">
+                ✦ Presented by Rohit Verma ✦
+              </span>
             </span>
           </Link>
 
@@ -50,7 +52,10 @@ export default function Navbar() {
               className="bg-marigold-400 hover:bg-marigold-500 transition-colors px-6 rounded-r text-white font-bold text-lg focus-ring"
               aria-label="Search"
             >
-              🔍
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
             </button>
           </form>
 
