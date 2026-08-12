@@ -5,19 +5,19 @@ module.exports = {
     extend: {
       colors: {
         indigo: {
-          950: '#12152B',
-          900: '#1B1F3B',
-          800: '#262B4D',
+          950: '#0A1628',
+          900: '#0F3460',
+          800: '#16528C',
         },
         marigold: {
-          400: '#F2A93B',
-          500: '#E8952A',
-          600: '#C97C1C',
+          400: '#38BDF8',
+          500: '#0EA5E9',
+          600: '#0284C7',
         },
-        cream: '#FAF8F4',
+        cream: '#F8FAFC',
       },
       fontFamily: {
-        display: ['"Fraunces"', 'Georgia', 'serif'],
+        display: ['"Sora"', 'system-ui', 'sans-serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
       },
     },

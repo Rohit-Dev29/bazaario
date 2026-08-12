@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background: #FAF8F4;
-  color: #1B1F3B;
+  background: #F8FAFC;
+  color: #0F3460;
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid #E8952A;
+  outline: 2px solid #0EA5E9;
   outline-offset: 2px;
 }
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
