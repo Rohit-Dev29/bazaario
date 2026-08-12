@@ -28,8 +28,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 shadow-lg">
       <div className="bg-indigo-900 text-white">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-5">
-          <Link href="/" className="font-display text-3xl font-700 tracking-tight shrink-0 focus-ring">
-            Bazaar<span className="text-marigold-400">io</span>
+       <Link href="/" className="shrink-0 focus-ring leading-tight">
+            <span className="font-display text-3xl font-700 tracking-tight block">
+              Bazaar<span className="text-marigold-400">io</span>
+            </span>
+            <span className="block text-[11px] font-medium text-white/60 tracking-wide">
+              Presented by Rohit Verma
+            </span>
           </Link>
 
           <form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden sm:flex shadow-md rounded">
