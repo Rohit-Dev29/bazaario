@@ -41,6 +41,22 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 pb-10">
+        <h4 className="text-cream font-semibold mb-3">Find us</h4>
+        <div className="rounded-lg overflow-hidden border border-white/10">
+          <iframe
+            title="Bazaario store location"
+            src="https://maps.google.com/maps?q=62%2F52%20Kalki%20Niwas%2C%20Bengoli%20Tola%2C%20New%20Bairahana%2C%20Prayagraj%2C%20Uttar%20Pradesh%20211003&output=embed"
+            width="100%"
+            height="280"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      </div>
+
       <div className="border-t border-white/10 py-4 text-center text-xs">
         © {new Date().getFullYear()} Bazaario. All rights reserved.
       </div>
