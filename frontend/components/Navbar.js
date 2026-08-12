@@ -39,20 +39,20 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden sm:flex shadow-md rounded">
+<form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden sm:flex items-center bg-white rounded-full shadow-md pr-1.5 focus-within:ring-2 focus-within:ring-marigold-400 transition-all">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for products, brands and more"
-              className="w-full rounded-l px-5 py-3 text-indigo-950 font-medium focus-ring outline-none"
+              className="flex-1 rounded-full pl-5 pr-2 py-2.5 text-indigo-950 font-medium outline-none bg-transparent"
             />
             <button
               type="submit"
-              className="bg-marigold-400 hover:bg-marigold-500 transition-colors px-6 rounded-r text-white font-bold text-lg focus-ring"
+              className="bg-gradient-to-br from-marigold-400 to-marigold-600 hover:scale-105 active:scale-95 transition-transform w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md focus-ring shrink-0"
               aria-label="Search"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
