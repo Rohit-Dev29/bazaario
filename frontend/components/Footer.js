@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="bg-indigo-950 text-cream/70 text-sm mt-16">
-      <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-5 gap-8">
         <div>
           <h4 className="text-cream font-semibold mb-3">Bazaario</h4>
           <p>About us</p>
@@ -22,6 +22,23 @@ export default function Footer() {
           <h4 className="text-cream font-semibold mb-3">Policies</h4>
           <p>Terms of use</p>
           <p>Privacy policy</p>
+        </div>
+        <div>
+          <h4 className="text-cream font-semibold mb-3">Contact us</h4>
+          <p>62/52 Kalki Niwas</p>
+          <p>Bengoli Tola, New Bairahana</p>
+          <p>Prayagraj, Uttar Pradesh</p>
+          <p>211003</p>
+          <p className="mt-2">
+            <a href="tel:+918416834135" className="hover:text-cream transition-colors">
+              +91 84168 34135
+            </a>
+          </p>
+          <p>
+            <a href="mailto:infobazaario@gmail.com" className="hover:text-cream transition-colors">
+              infobazaario@gmail.com
+            </a>
+          </p>
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs">
