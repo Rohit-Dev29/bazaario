@@ -32,7 +32,8 @@ export default async function SearchPage({ searchParams }) {
         <div className="bg-white border border-indigo-900/10 rounded-lg p-10 text-center text-indigo-900/60">
           No products matched your search.
         </div>
-      ) : (<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
           {products.map((p) => (
             <ProductCard key={p._id} product={p} />
           ))}

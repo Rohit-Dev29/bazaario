@@ -23,18 +23,18 @@ export default function AddToCartPanel({ product }) {
 
   return (
     <div className="mt-6 flex items-center gap-3 flex-wrap">
-      <div className="flex items-center border border-indigo-900/20 rounded-md">
+      <div className="flex items-center border-2 border-indigo-900/20 rounded-lg">
         <button
           onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-          className="px-3 py-2 hover:bg-cream focus-ring"
+          className="px-4 py-3 hover:bg-cream text-lg font-bold focus-ring"
           aria-label="Decrease quantity"
         >
           −
         </button>
-        <span className="px-4">{quantity}</span>
+        <span className="px-5 text-lg font-bold">{quantity}</span>
         <button
           onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
-          className="px-3 py-2 hover:bg-cream focus-ring"
+          className="px-4 py-3 hover:bg-cream text-lg font-bold focus-ring"
           aria-label="Increase quantity"
         >
           +
@@ -44,17 +44,17 @@ export default function AddToCartPanel({ product }) {
       <button
         onClick={handleAdd}
         disabled={product.stock === 0}
-        className="bg-marigold-400 hover:bg-marigold-500 disabled:opacity-40 disabled:cursor-not-allowed text-indigo-950 font-semibold px-6 py-2.5 rounded-md transition-colors focus-ring"
+        className="bg-marigold-400 hover:bg-marigold-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-extrabold text-lg px-8 py-3.5 rounded-lg shadow-md transition-colors focus-ring"
       >
-        {added ? 'Added ✓' : 'Add to cart'}
+        {added ? 'Added ✓' : 'ADD TO CART'}
       </button>
 
       <button
         onClick={handleBuyNow}
         disabled={product.stock === 0}
-        className="bg-indigo-900 hover:bg-indigo-800 disabled:opacity-40 disabled:cursor-not-allowed text-cream font-semibold px-6 py-2.5 rounded-md transition-colors focus-ring"
+        className="bg-marigold-500 hover:bg-marigold-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-extrabold text-lg px-8 py-3.5 rounded-lg shadow-md transition-colors focus-ring"
       >
-        Buy now
+        BUY NOW
       </button>
     </div>
   );

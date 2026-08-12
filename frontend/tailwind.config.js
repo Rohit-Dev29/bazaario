@@ -5,16 +5,16 @@ module.exports = {
     extend: {
       colors: {
         indigo: {
-          950: '#0A1628',
-          900: '#0F3460',
-          800: '#16528C',
+          950: '#172554',
+          900: '#2874F0',
+          800: '#1E5DC7',
         },
         marigold: {
-          400: '#38BDF8',
-          500: '#0EA5E9',
-          600: '#0284C7',
+          400: '#FF9F00',
+          500: '#FB641B',
+          600: '#E85D0F',
         },
-        cream: '#F8FAFC',
+        cream: '#F1F3F6',
       },
       fontFamily: {
         display: ['"Sora"', 'system-ui', 'sans-serif'],
