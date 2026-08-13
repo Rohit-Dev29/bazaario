@@ -5,10 +5,36 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// Attach the saved login token to every request as a backup to cookies —
+// some mobile browsers block cross-site cookies (our site and API are on
+// different domains), so this keeps login working everywhere.
+api.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const token = window.localStorage.getItem('bazaario_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
+
+function saveToken(response) {
+  if (typeof window !== 'undefined' && response?.data?.token) {
+    window.localStorage.setItem('bazaario_token', response.data.token);
+  }
+  return response;
+}
+
+function clearToken() {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem('bazaario_token');
+  }
+}
+
 export const authApi = {
-  register: (data) => api.post('/auth/register', data),
-  login: (data) => api.post('/auth/login', data),
-  logout: () => api.post('/auth/logout'),
+  register: (data) => api.post('/auth/register', data).then(saveToken),
+  login: (data) => api.post('/auth/login', data).then(saveToken),
+  logout: () => api.post('/auth/logout').finally(clearToken),
   me: () => api.get('/auth/me'),
 };
 
