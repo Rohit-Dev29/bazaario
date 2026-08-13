@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { categoryApi } from '../lib/api';
+import SideMenu from './SideMenu';
 
 export default function Navbar() {
   const { itemCount } = useCart();
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [categories, setCategories] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     categoryApi
@@ -27,8 +29,18 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 shadow-lg">
       <div className="bg-indigo-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-5">
-<Link href="/" className="shrink-0 focus-ring leading-tight max-w-[160px] sm:max-w-none">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
+          <button
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            className="shrink-0 flex flex-col gap-1.5 p-1 focus-ring"
+          >
+            <span className="block w-6 h-0.5 bg-white rounded" />
+            <span className="block w-6 h-0.5 bg-white rounded" />
+            <span className="block w-6 h-0.5 bg-white rounded" />
+          </button>
+
+          <Link href="/" className="shrink-0 focus-ring leading-tight max-w-[160px] sm:max-w-none">
             <span className="font-display text-3xl font-700 tracking-tight block">
               Bazaar<span className="text-marigold-400">io</span>
             </span>
@@ -39,7 +51,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-<form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden sm:flex items-center bg-white rounded-full shadow-md pr-1.5 focus-within:ring-2 focus-within:ring-marigold-400 transition-all">
+          <form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden sm:flex items-center bg-white rounded-full shadow-md pr-1.5 focus-within:ring-2 focus-within:ring-marigold-400 transition-all">
             <input
               type="text"
               value={query}
@@ -52,7 +64,7 @@ export default function Navbar() {
               className="bg-gradient-to-br from-marigold-400 to-marigold-600 hover:scale-105 active:scale-95 transition-transform w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md focus-ring shrink-0"
               aria-label="Search"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -60,7 +72,7 @@ export default function Navbar() {
           </form>
 
           <nav className="ml-auto flex items-center gap-6 text-base font-bold">
-            <Link href="/login" className="hover:text-marigold-400 transition-colors focus-ring">
+            <Link href="/login" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
               Account
             </Link>
             <Link href="/orders" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
@@ -112,6 +124,8 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      <SideMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </header>
   );
 }
