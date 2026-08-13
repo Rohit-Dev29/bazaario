@@ -28,10 +28,10 @@ const run = async () => {
 
   console.log('Creating categories...');
   const categories = await Category.insertMany([
-    { name: 'Electronics', slug: 'electronics', image: 'https://loremflickr.com/200/200/electronics' },
-    { name: 'Fashion', slug: 'fashion', image: 'https://loremflickr.com/200/200/fashion,clothing' },
-    { name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://loremflickr.com/200/200/kitchenware' },
-    { name: 'Grocery', slug: 'grocery', image: 'https://loremflickr.com/200/200/grocery' },
+    { name: 'Electronics', slug: 'electronics', image: 'https://loremflickr.com/200/200/electronics?lock=101' },
+    { name: 'Fashion', slug: 'fashion', image: 'https://loremflickr.com/200/200/fashion,clothing?lock=102' },
+    { name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://loremflickr.com/200/200/kitchenware?lock=103' },
+    { name: 'Grocery', slug: 'grocery', image: 'https://loremflickr.com/200/200/grocery?lock=104' },
   ]);
 
   console.log('Creating sample products...');
@@ -43,7 +43,7 @@ const run = async () => {
       brand: 'SoundWave',
       category: categories[0]._id,
       seller: seller._id,
-      images: ['https://m.media-amazon.com/images/I/61RjcJswkPL.jpg'],
+      images: ['https://loremflickr.com/600/600/earbuds,wireless?lock=21'],
       price: 1999,
       mrp: 3499,
       stock: 50,
@@ -55,7 +55,7 @@ const run = async () => {
       brand: 'Urban Thread',
       category: categories[1]._id,
       seller: seller._id,
-      images: ['https://loremflickr.com/600/600/mensshirt'],
+      images: ['https://loremflickr.com/600/600/mensshirt?lock=22'],
       price: 799,
       mrp: 1299,
       stock: 120,
@@ -67,7 +67,7 @@ const run = async () => {
       brand: 'HomeChef',
       category: categories[2]._id,
       seller: seller._id,
-      images: ['https://loremflickr.com/600/600/fryingpan'],
+      images: ['https://loremflickr.com/600/600/fryingpan?lock=23'],
       price: 649,
       mrp: 999,
       stock: 80,
@@ -79,7 +79,7 @@ const run = async () => {
       brand: 'FarmFresh',
       category: categories[3]._id,
       seller: seller._id,
-      images: ['https://loremflickr.com/600/600/rice,bag'],
+      images: ['https://loremflickr.com/600/600/rice,bag?lock=24'],
       price: 549,
       mrp: 699,
       stock: 200,
