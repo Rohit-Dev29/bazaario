@@ -28,10 +28,10 @@ const run = async () => {
 
   console.log('Creating categories...');
   const categories = await Category.insertMany([
-    { name: 'Electronics', slug: 'electronics', image: 'https://loremflickr.com/200/200/electronics?lock=101' },
-    { name: 'Fashion', slug: 'fashion', image: 'https://loremflickr.com/200/200/fashion,clothing?lock=102' },
-    { name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://loremflickr.com/200/200/kitchenware?lock=103' },
-    { name: 'Grocery', slug: 'grocery', image: 'https://loremflickr.com/200/200/grocery?lock=104' },
+    { name: 'Electronics', slug: 'electronics', image: 'https://images.pexels.com/photos/2933604/pexels-photo-2933604.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+    { name: 'Fashion', slug: 'fashion', image: 'https://images.pexels.com/photos/2249249/pexels-photo-2249249.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+    { name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://images.pexels.com/photos/6245/pexels-photo-6245.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+    { name: 'Grocery', slug: 'grocery', image: 'https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
   ]);
 
   console.log('Creating sample products...');
@@ -43,7 +43,7 @@ const run = async () => {
       brand: 'SoundWave',
       category: categories[0]._id,
       seller: seller._id,
-      images: ['https://loremflickr.com/600/600/earbuds,wireless?lock=21'],
+      images: ['https://images.pexels.com/photos/33298188/pexels-photo-33298188.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop'],
       price: 1999,
       mrp: 3499,
       stock: 50,
@@ -55,7 +55,7 @@ const run = async () => {
       brand: 'Urban Thread',
       category: categories[1]._id,
       seller: seller._id,
-      images: ['https://loremflickr.com/600/600/mensshirt?lock=22'],
+      images: ['https://images.pexels.com/photos/15835597/pexels-photo-15835597.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop'],
       price: 799,
       mrp: 1299,
       stock: 120,
