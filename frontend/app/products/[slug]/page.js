@@ -1,4 +1,5 @@
 import AddToCartPanel from '../../../components/AddToCartPanel';
+import ChatWidget from '../../../components/ChatWidget';
 
 async function getProduct(slug) {
   const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
@@ -9,6 +10,13 @@ async function getProduct(slug) {
   } catch (e) {
     return null;
   }
+}
+
+function getEmbedUrl(url) {
+  if (!url) return null;
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+  return null;
 }
 
 export default async function ProductPage({ params }) {
@@ -28,11 +36,37 @@ export default async function ProductPage({ params }) {
       ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
       : 0;
 
+  const embedUrl = getEmbedUrl(product.videoUrl);
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-10">
-      <div className="aspect-square bg-white rounded-lg border border-indigo-900/10 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={product.images?.[0]} alt={product.title} className="w-full h-full object-cover" />
+      <div>
+        <div className="aspect-square bg-white rounded-lg border border-indigo-900/10 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={product.images?.[0]} alt={product.title} className="w-full h-full object-cover" />
+        </div>
+
+        {product.videoUrl && (
+          <div className="mt-4">
+            <h2 className="font-semibold text-indigo-950 mb-2">Product demo video</h2>
+            {embedUrl ? (
+              <div className="aspect-video rounded-lg overflow-hidden border border-indigo-900/10">
+                <iframe
+                  src={embedUrl}
+                  title="Product demo video"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <video controls className="w-full rounded-lg border border-indigo-900/10">
+                <source src={product.videoUrl} />
+                Your browser does not support embedded video.
+              </video>
+            )}
+          </div>
+        )}
       </div>
 
       <div>
@@ -90,6 +124,8 @@ export default async function ProductPage({ params }) {
           </div>
         )}
       </div>
+
+      <ChatWidget productId={product._id} productTitle={product.title} />
     </div>
   );
 }

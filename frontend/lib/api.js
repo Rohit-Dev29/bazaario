@@ -35,4 +35,12 @@ export const categoryApi = {
   create: (data) => api.post('/categories', data),
 };
 
+export const chatApi = {
+  getMyConversation: (productId) => api.get(`/chat/${productId}`),
+  sendMessage: (productId, text) => api.post(`/chat/${productId}`, { text }),
+  sellerList: () => api.get('/chat/conversations'),
+  sellerGet: (id) => api.get(`/chat/conversations/${id}`),
+  sellerReply: (id, text) => api.post(`/chat/conversations/${id}/reply`, { text }),
+};
+
 export default api;

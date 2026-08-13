@@ -29,7 +29,8 @@ const run = async () => {
   console.log('Creating categories...');
   const categories = await Category.insertMany([
     { name: 'Electronics', slug: 'electronics', image: 'https://images.pexels.com/photos/2933604/pexels-photo-2933604.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
-    { name: 'Fashion', slug: 'fashion', image: 'https://images.pexels.com/photos/2249249/pexels-photo-2249249.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },{ name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://images.pexels.com/photos/6245/kitchen-cooking-interior-decor.jpg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+    { name: 'Fashion', slug: 'fashion', image: 'https://images.pexels.com/photos/2249249/pexels-photo-2249249.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+    { name: 'Home & Kitchen', slug: 'home-kitchen', image: 'https://images.pexels.com/photos/6245/kitchen-cooking-interior-decor.jpg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
     { name: 'Grocery', slug: 'grocery', image: 'https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
   ]);
 

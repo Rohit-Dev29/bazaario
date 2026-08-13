@@ -23,6 +23,7 @@ export default function ProductForm({ initialProduct = null }) {
     brand: initialProduct?.brand || '',
     category: initialProduct?.category?._id || initialProduct?.category || '',
     images: initialProduct?.images?.join(', ') || '',
+    videoUrl: initialProduct?.videoUrl || '',
     price: initialProduct?.price || '',
     mrp: initialProduct?.mrp || '',
     stock: initialProduct?.stock ?? '',
@@ -57,6 +58,7 @@ export default function ProductForm({ initialProduct = null }) {
       brand: form.brand,
       category: form.category,
       images: form.images.split(',').map((s) => s.trim()).filter(Boolean),
+      videoUrl: form.videoUrl.trim(),
       price: Number(form.price),
       mrp: Number(form.mrp),
       stock: Number(form.stock),
@@ -150,6 +152,19 @@ export default function ProductForm({ initialProduct = null }) {
         />
         <p className="text-xs text-indigo-900/50 mt-1">
           Paste an image link (upload your photo to postimages.org or imgur.com first). Separate multiple links with commas.
+        </p>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-indigo-950 mb-1">Demo video (optional)</label>
+        <input
+          value={form.videoUrl}
+          onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
+          placeholder="https://youtube.com/watch?v=..."
+          className="w-full border border-indigo-900/20 rounded-md px-3 py-2 focus-ring outline-none"
+        />
+        <p className="text-xs text-indigo-900/50 mt-1">
+          A YouTube link works best — paste the video's page URL. Buyers will see it on the product page.
         </p>
       </div>
 

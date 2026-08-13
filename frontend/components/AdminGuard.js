@@ -64,6 +64,12 @@ export default function AdminGuard({ children }) {
         >
           Orders
         </Link>
+        <Link
+          href="/admin/messages"
+          className={pathname.startsWith('/admin/messages') ? 'text-marigold-600' : 'text-indigo-900/70 hover:text-indigo-950'}
+        >
+          Messages
+        </Link>
       </div>
       {children}
     </div>

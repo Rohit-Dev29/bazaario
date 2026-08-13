@@ -34,6 +34,7 @@ const productSchema = new mongoose.Schema(
     },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     images: [{ type: String, required: true }],
+    videoUrl: { type: String, trim: true },
     price: { type: Number, required: true, min: 0 },
     mrp: { type: Number, required: true, min: 0 }, // strike-through price
     stock: { type: Number, required: true, default: 0, min: 0 },
