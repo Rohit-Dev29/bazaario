@@ -68,4 +68,4 @@ export const chatApi = {
   sellerReply: (id, text) => api.post(`/chat/conversations/${id}/reply`, { text }),
 };
 
-export default api;ss
+export default api;
