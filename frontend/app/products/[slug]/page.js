@@ -29,19 +29,17 @@ function getEmbedInfo(url) {
   if (vimeoMatch) {
     return { type: 'iframe', src: `https://player.vimeo.com/video/${vimeoMatch[1]}` };
   }
-
-  // Instagram: instagram.com/p/CODE/ or /reel/CODE/
-  const igMatch = url.match(/instagram\.com\/(p|reel)\/([\w-]+)/);
-  if (igMatch) {
-    return { type: 'iframe', src: `https://www.instagram.com/${igMatch[1]}/${igMatch[2]}/embed`, tall: true };
+// Instagram: instagram.com/p/CODE/ or /reel/CODE/
+  // Instagram frequently blocks iframe embeds from other sites, so we skip
+  // trying to embed it and go straight to a reliable "watch on Instagram" link.
+  if (/instagram\.com\/(p|reel)\//.test(url)) {
+    return { type: 'link', src: url, platform: 'Instagram' };
   }
-
-  // Facebook: facebook.com/.../videos/... or /watch/?v=...
+// Facebook: facebook.com/.../videos/... or /watch/?v=...
+  // Facebook also frequently blocks iframe embeds unless the page/video has
+  // specific public settings, so we use the same reliable link approach.
   if (/facebook\.com\/.*(video|watch)/.test(url)) {
-    return {
-      type: 'iframe',
-      src: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0`,
-    };
+    return { type: 'link', src: url, platform: 'Facebook' };
   }
 
   // Direct video file link (.mp4, .webm, .mov, etc.)
@@ -103,18 +101,16 @@ export default async function ProductPage({ params }) {
               </video>
             )}
 
-            {embed.type === 'link' && (
+          {embed.type === 'link' && (
               
                 href={embed.src}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-marigold-500 hover:bg-marigold-600 text-white font-bold px-5 py-2.5 rounded-md transition-colors focus-ring"
               >
-                ▶ Watch demo video
+                ▶ Watch {embed.platform ? `on ${embed.platform}` : 'demo video'}
               </a>
             )}
-          </div>
-        )}
       </div>
 
       <div>
