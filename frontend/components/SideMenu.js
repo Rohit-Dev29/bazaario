@@ -80,8 +80,7 @@ export default function SideMenu({ open, onClose }) {
           <MenuLink href="/admin" onClose={onClose} label="Admin dashboard" />
 
           <div className="border-t border-indigo-900/10 my-2" />
-
-          <MenuLink href="/login" onClose={onClose} label="Account settings" />
+<MenuLink href="/account" onClose={onClose} label="Account settings" />
 
           {user && (
             <button

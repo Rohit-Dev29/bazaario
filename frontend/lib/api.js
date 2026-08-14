@@ -30,14 +30,13 @@ function clearToken() {
     window.localStorage.removeItem('bazaario_token');
   }
 }
-
 export const authApi = {
   register: (data) => api.post('/auth/register', data).then(saveToken),
   login: (data) => api.post('/auth/login', data).then(saveToken),
   logout: () => api.post('/auth/logout').finally(clearToken),
   me: () => api.get('/auth/me'),
+  updateProfile: (data) => api.put('/auth/me', data),
 };
-
 export const productApi = {
   list: (params) => api.get('/products', { params }),
   get: (idOrSlug) => api.get(`/products/${idOrSlug}`),
@@ -69,4 +68,4 @@ export const chatApi = {
   sellerReply: (id, text) => api.post(`/chat/conversations/${id}/reply`, { text }),
 };
 
-export default api;
+export default api;ss
