@@ -12,11 +12,45 @@ async function getProduct(slug) {
   }
 }
 
-function getEmbedUrl(url) {
+// Detects the video platform from a pasted link and returns the right
+// embeddable iframe URL, or null if it should fall back to a direct
+// <video> tag / plain link instead.
+function getEmbedInfo(url) {
   if (!url) return null;
+
+  // YouTube: youtube.com/watch?v=... or youtu.be/...
   const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
-  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
-  return null;
+  if (ytMatch) {
+    return { type: 'iframe', src: `https://www.youtube.com/embed/${ytMatch[1]}` };
+  }
+
+  // Vimeo: vimeo.com/12345678
+  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+  if (vimeoMatch) {
+    return { type: 'iframe', src: `https://player.vimeo.com/video/${vimeoMatch[1]}` };
+  }
+
+  // Instagram: instagram.com/p/CODE/ or /reel/CODE/
+  const igMatch = url.match(/instagram\.com\/(p|reel)\/([\w-]+)/);
+  if (igMatch) {
+    return { type: 'iframe', src: `https://www.instagram.com/${igMatch[1]}/${igMatch[2]}/embed`, tall: true };
+  }
+
+  // Facebook: facebook.com/.../videos/... or /watch/?v=...
+  if (/facebook\.com\/.*(video|watch)/.test(url)) {
+    return {
+      type: 'iframe',
+      src: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0`,
+    };
+  }
+
+  // Direct video file link (.mp4, .webm, .mov, etc.)
+  if (/\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(url)) {
+    return { type: 'file', src: url };
+  }
+
+  // Unknown platform — offer a plain link instead of trying to embed
+  return { type: 'link', src: url };
 }
 
 export default async function ProductPage({ params }) {
@@ -36,7 +70,7 @@ export default async function ProductPage({ params }) {
       ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
       : 0;
 
-  const embedUrl = getEmbedUrl(product.videoUrl);
+  const embed = getEmbedInfo(product.videoUrl);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-10">
@@ -46,24 +80,38 @@ export default async function ProductPage({ params }) {
           <img src={product.images?.[0]} alt={product.title} className="w-full h-full object-cover" />
         </div>
 
-        {product.videoUrl && (
+        {embed && (
           <div className="mt-4">
             <h2 className="font-semibold text-indigo-950 mb-2">Product demo video</h2>
-            {embedUrl ? (
-              <div className="aspect-video rounded-lg overflow-hidden border border-indigo-900/10">
+
+            {embed.type === 'iframe' && (
+              <div className={embed.tall ? 'aspect-[9/16] max-w-sm mx-auto' : 'aspect-video'}>
                 <iframe
-                  src={embedUrl}
+                  src={embed.src}
                   title="Product demo video"
-                  className="w-full h-full"
+                  className="w-full h-full rounded-lg border border-indigo-900/10"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
-            ) : (
+            )}
+
+            {embed.type === 'file' && (
               <video controls className="w-full rounded-lg border border-indigo-900/10">
-                <source src={product.videoUrl} />
+                <source src={embed.src} />
                 Your browser does not support embedded video.
               </video>
+            )}
+
+            {embed.type === 'link' && (
+              
+                href={embed.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-marigold-500 hover:bg-marigold-600 text-white font-bold px-5 py-2.5 rounded-md transition-colors focus-ring"
+              >
+                ▶ Watch demo video
+              </a>
             )}
           </div>
         )}
