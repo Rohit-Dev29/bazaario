@@ -71,61 +71,38 @@ export default function Navbar() {
             </button>
           </form>
 
-          <nav className="ml-auto flex items-center gap-6 text-base font-bold">
-            <Link href="/login" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
-              Account
-            </Link>
-            <Link href="/orders" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
-              Orders
-            </Link>
-            <Link href="/admin" className="hover:text-marigold-400 transition-colors hidden sm:inline focus-ring">
-              Admin
-            </Link>
-            <Link
-              href="/cart"
-              className="relative bg-marigold-500 hover:bg-marigold-600 transition-colors px-4 py-2 rounded shadow focus-ring"
-            >
-              Cart
-              {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-white text-indigo-900 text-xs font-extrabold rounded-full w-6 h-6 flex items-center justify-center border-2 border-marigold-500">
-                  {itemCount}
-                </span>
-              )}
-            </Link>
-          </nav>
-        </div>
+         <nav className="ml-auto flex items-center gap-2 sm:gap-6 text-xs sm:text-base font-bold">
+  <Link
+    href="/login"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Account
+  </Link>
 
-        <form onSubmit={handleSearch} className="sm:hidden px-4 pb-3 flex shadow-md">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search Bazaario"
-            className="w-full rounded-l px-4 py-2.5 text-indigo-950 font-medium outline-none"
-          />
-          <button type="submit" className="bg-marigold-400 px-5 rounded-r text-white font-bold">
-            Go
-          </button>
-        </form>
-      </div>
+  <Link
+    href="/orders"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Orders
+  </Link>
 
-      {categories.length > 0 && (
-        <div className="bg-marigold-500 text-white overflow-x-auto">
-          <div className="max-w-7xl mx-auto px-4 py-2.5 flex gap-6 text-sm font-bold whitespace-nowrap">
-            {categories.map((c) => (
-              <Link
-                key={c._id}
-                href={`/search?category=${c._id}`}
-                className="hover:text-indigo-950 transition-colors focus-ring"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+  <Link
+    href="/admin"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Admin
+  </Link>
 
-      <SideMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-    </header>
-  );
-}
+  <Link
+    href="/cart"
+    className="relative bg-marigold-500 hover:bg-marigold-600 transition-colors px-3 sm:px-4 py-2 rounded shadow focus-ring"
+  >
+    Cart
+
+    {itemCount > 0 && (
+      <span className="absolute -top-2 -right-2 bg-white text-indigo-900 text-xs font-extrabold rounded-full w-6 h-6 flex items-center justify-center border-2 border-marigold-500">
+        {itemCount}
+      </span>
+    )}
+  </Link>
+</nav>
