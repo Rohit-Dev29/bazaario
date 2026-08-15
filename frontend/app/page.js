@@ -72,7 +72,7 @@ export default async function HomePage() {
             </a>
           </div>
 
-          <div className="hidden md:block">
+          <div className="block">
             <div className="grid grid-cols-2 gap-3">
               {['Electronics', 'Fashion', 'Home', 'Grocery'].map(
                 (label, i) => (
