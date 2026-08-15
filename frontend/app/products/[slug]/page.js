@@ -12,43 +12,11 @@ async function getProduct(slug) {
   }
 }
 
-// Detects the video platform from a pasted link and returns the right
-// embeddable iframe URL, or null if it should fall back to a direct
-// <video> tag / plain link instead.
-function getEmbedInfo(url) {
+function getEmbedUrl(url) {
   if (!url) return null;
-
-  // YouTube: youtube.com/watch?v=... or youtu.be/...
   const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
-  if (ytMatch) {
-    return { type: 'iframe', src: `https://www.youtube.com/embed/${ytMatch[1]}` };
-  }
-
-  // Vimeo: vimeo.com/12345678
-  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
-  if (vimeoMatch) {
-    return { type: 'iframe', src: `https://player.vimeo.com/video/${vimeoMatch[1]}` };
-  }
-// Instagram: instagram.com/p/CODE/ or /reel/CODE/
-  // Instagram frequently blocks iframe embeds from other sites, so we skip
-  // trying to embed it and go straight to a reliable "watch on Instagram" link.
-  if (/instagram\.com\/(p|reel)\//.test(url)) {
-    return { type: 'link', src: url, platform: 'Instagram' };
-  }
-// Facebook: facebook.com/.../videos/... or /watch/?v=...
-  // Facebook also frequently blocks iframe embeds unless the page/video has
-  // specific public settings, so we use the same reliable link approach.
-  if (/facebook\.com\/.*(video|watch)/.test(url)) {
-    return { type: 'link', src: url, platform: 'Facebook' };
-  }
-
-  // Direct video file link (.mp4, .webm, .mov, etc.)
-  if (/\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(url)) {
-    return { type: 'file', src: url };
-  }
-
-  // Unknown platform — offer a plain link instead of trying to embed
-  return { type: 'link', src: url };
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+  return null;
 }
 
 export default async function ProductPage({ params }) {
@@ -68,7 +36,7 @@ export default async function ProductPage({ params }) {
       ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
       : 0;
 
-  const embed = getEmbedInfo(product.videoUrl);
+  const embedUrl = getEmbedUrl(product.videoUrl);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-10">
@@ -78,39 +46,31 @@ export default async function ProductPage({ params }) {
           <img src={product.images?.[0]} alt={product.title} className="w-full h-full object-cover" />
         </div>
 
-        {embed && (
+        {product.videoUrl && (
           <div className="mt-4">
             <h2 className="font-semibold text-indigo-950 mb-2">Product demo video</h2>
-
-            {embed.type === 'iframe' && (
-              <div className={embed.tall ? 'aspect-[9/16] max-w-sm mx-auto' : 'aspect-video'}>
+            {embedUrl ? (
+              <div className="aspect-video rounded-lg overflow-hidden border border-indigo-900/10">
                 <iframe
-                  src={embed.src}
+                  src={embedUrl}
                   title="Product demo video"
-                  className="w-full h-full rounded-lg border border-indigo-900/10"
+                  className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
-            )}
-
-            {embed.type === 'file' && (
-              <video controls className="w-full rounded-lg border border-indigo-900/10">
-                <source src={embed.src} />
-                Your browser does not support embedded video.
-              </video>
-            )}
-
-          {embed.type === 'link' && (
+            ) : (
               
-                href={embed.src}
+                href={product.videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-marigold-500 hover:bg-marigold-600 text-white font-bold px-5 py-2.5 rounded-md transition-colors focus-ring"
               >
-                ▶ Watch {embed.platform ? `on ${embed.platform}` : 'demo video'}
+                ▶ Watch demo video
               </a>
             )}
+          </div>
+        )}
       </div>
 
       <div>
