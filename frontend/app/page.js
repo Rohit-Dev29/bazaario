@@ -80,49 +80,34 @@ export default async function HomePage() {
         <section className="max-w-7xl mx-auto px-4 py-10">
           <h2 className="font-display text-2xl font-600 text-indigo-950 mb-4">Browse the street</h2>
           <div className="flex gap-4 overflow-x-auto pb-2">
-      {categories.map((cat) => (
-  <a
-    key={cat._id}
-    href={`/search?category=${cat._id}`}
-    className="shrink-0 w-40 bg-white border border-indigo-900/10 rounded-lg p-4 text-center hover:border-marigold-400 hover:shadow-md transition-all focus-ring"
-  >
-    <div className="w-16 h-16 mx-auto rounded-full bg-cream overflow-hidden mb-2">
-      {cat.image && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
-      )}
-    </div>
-    <p className="font-medium text-sm text-indigo-950">{cat.name}</p>
-  </a>
-))}
-                <div className="w-16 h-16 mx-auto rounded-full bg-cream overflow-hidden mb-2">
-                  {cat.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
-                  )}
-                </div>
-                <p className="font-medium text-sm text-indigo-950">{cat.name}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+     {categories.length > 0 && (
+  <section className="max-w-7xl mx-auto px-4 py-10">
+    <h2 className="font-display text-2xl font-600 text-indigo-950 mb-4">
+      Browse the street
+    </h2>
 
-      {/* Featured products */}
-      <section id="featured" className="max-w-7xl mx-auto px-4 py-10">
-        <h2 className="font-display text-2xl font-600 text-indigo-950 mb-4">Fresh on Bazaario</h2>
-        {products.length === 0 ? (
-          <div className="bg-white border border-indigo-900/10 rounded-lg p-10 text-center text-indigo-900/60">
-            No products yet — once your backend is running and seeded, they'll show up here.
+    <div className="flex gap-4 overflow-x-auto pb-2">
+      {categories.map((cat) => (
+        <a
+          key={cat._id}
+          href={`/search?category=${cat._id}`}
+          className="shrink-0 w-40 bg-white border border-indigo-900/10 rounded-lg p-4 text-center hover:border-marigold-400 hover:shadow-md transition-all focus-ring"
+        >
+          <div className="w-16 h-16 mx-auto rounded-full bg-cream overflow-hidden mb-2">
+            {cat.image && (
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-            {products.map((p) => (
-              <ProductCard key={p._id} product={p} />
-            ))}
-          </div>
-        )}
-      </section>
+
+          <p className="font-medium text-sm text-indigo-950">
+            {cat.name}
+          </p>
+        </a>
+      ))}
     </div>
-  );
-}
+  </section>
+)}
