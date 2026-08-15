@@ -3,6 +3,8 @@ import { CartProvider } from '../context/CartContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Bazaario — Everything, from everyone',
   description: 'A marketplace for sellers and shoppers alike.',
@@ -14,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-sans min-h-screen flex flex-col">
+      <body className="font-sans min-h-screen flex flex-col overflow-x-hidden">
         <CartProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

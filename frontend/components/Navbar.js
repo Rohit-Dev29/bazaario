@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 shadow-lg">
       <div className="bg-indigo-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-3">
+       <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex flex-wrap items-center gap-2 sm:gap-4">
 
           {/* Menu */}
           <button
@@ -98,42 +98,40 @@ export default function Navbar() {
           </form>
 
           {/* Account / Orders / Admin / Cart */}
-          <nav className="ml-auto flex items-center gap-2 sm:gap-6 text-[11px] sm:text-base font-bold">
+         <nav className="ml-auto flex items-center gap-2 sm:gap-6 text-[11px] sm:text-base font-bold whitespace-nowrap">
+  <Link
+    href="/login"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Account
+  </Link>
 
-            <Link
-              href="/login"
-              className="hover:text-marigold-400 transition-colors focus-ring"
-            >
-              Account
-            </Link>
+  <Link
+    href="/orders"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Orders
+  </Link>
 
-            <Link
-              href="/orders"
-              className="hover:text-marigold-400 transition-colors focus-ring"
-            >
-              Orders
-            </Link>
+  <Link
+    href="/admin"
+    className="hover:text-marigold-400 transition-colors focus-ring"
+  >
+    Admin
+  </Link>
 
-            <Link
-              href="/admin"
-              className="hover:text-marigold-400 transition-colors focus-ring"
-            >
-              Admin
-            </Link>
-
-            <Link
-              href="/cart"
-              className="relative bg-marigold-500 hover:bg-marigold-600 transition-colors px-3 sm:px-4 py-2 rounded shadow focus-ring"
-            >
-              Cart
-
-              {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-white text-indigo-900 text-xs font-extrabold rounded-full w-6 h-6 flex items-center justify-center border-2 border-marigold-500">
-                  {itemCount}
-                </span>
-              )}
-            </Link>
-          </nav>
+  <Link
+    href="/cart"
+    className="relative bg-marigold-500 hover:bg-marigold-600 transition-colors px-3 py-2 rounded shadow focus-ring"
+  >
+    Cart
+    {itemCount > 0 && (
+      <span className="absolute -top-2 -right-2 bg-white text-indigo-900 text-xs font-extrabold rounded-full w-6 h-6 flex items-center justify-center border-2 border-marigold-500">
+        {itemCount}
+      </span>
+    )}
+  </Link>
+</nav>
         </div>
 
         {/* Mobile Search */}
