@@ -15,6 +15,13 @@ async function getData() {
   }
 }
 
+const stallImages = {
+  Electronics: 'https://images.pexels.com/photos/2933604/pexels-photo-2933604.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+  Fashion: 'https://images.pexels.com/photos/2249249/pexels-photo-2249249.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+  Home: 'https://images.pexels.com/photos/6245/kitchen-cooking-interior-decor.jpg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+  Grocery: 'https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+};
+
 export default async function HomePage() {
   const { products, categories } = await getData();
 
@@ -34,7 +41,7 @@ export default async function HomePage() {
               Bazaario brings independent sellers and everyday essentials onto one street —
               browse, compare, and check out in minutes.
             </p>
-            <a
+            
               href="#featured"
               className="inline-block mt-6 bg-marigold-400 hover:bg-marigold-500 transition-colors text-indigo-950 font-semibold px-6 py-3 rounded-md focus-ring"
             >
@@ -46,11 +53,20 @@ export default async function HomePage() {
               {['Electronics', 'Fashion', 'Home', 'Grocery'].map((label, i) => (
                 <div
                   key={label}
-                  className="bg-indigo-800/60 border border-marigold-400/20 rounded-lg p-5 aspect-square flex flex-col justify-between"
+                  className="relative rounded-lg aspect-square overflow-hidden border border-marigold-400/20 shadow-lg"
                   style={{ transform: i % 2 === 0 ? 'rotate(-1deg)' : 'rotate(1deg)' }}
                 >
-                  <span className="text-xs text-marigold-400 font-mono">Stall {i + 1}</span>
-                  <span className="font-display text-lg">{label}</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={stallImages[label]}
+                    alt={label}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/85 via-indigo-950/10 to-transparent" />
+                  <div className="relative h-full p-5 flex flex-col justify-between">
+                    <span className="text-xs text-marigold-400 font-mono">Stall {i + 1}</span>
+                    <span className="font-display text-lg">{label}</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -64,7 +80,7 @@ export default async function HomePage() {
           <h2 className="font-display text-2xl font-600 text-indigo-950 mb-4">Browse the street</h2>
           <div className="flex gap-4 overflow-x-auto pb-2">
             {categories.map((cat) => (
-              <a
+              
                 key={cat._id}
                 href={`/search?category=${cat._id}`}
                 className="shrink-0 w-40 bg-white border border-indigo-900/10 rounded-lg p-4 text-center hover:border-marigold-400 hover:shadow-md transition-all focus-ring"
