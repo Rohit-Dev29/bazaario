@@ -42,11 +42,12 @@ export default async function HomePage() {
               browse, compare, and check out in minutes.
             </p>
             
-              href="#featured"
+             href="#featured"
               className="inline-block mt-6 bg-marigold-400 hover:bg-marigold-500 transition-colors text-indigo-950 font-semibold px-6 py-3 rounded-md focus-ring"
             >
               Start browsing
             </a>
+
           </div>
           <div className="hidden md:block">
             <div className="grid grid-cols-2 gap-3">
