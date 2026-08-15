@@ -60,15 +60,15 @@ export default async function ProductPage({ params }) {
                 />
               </div>
             ) : (
-              
-                href={product.videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-marigold-500 hover:bg-marigold-600 text-white font-bold px-5 py-2.5 rounded-md transition-colors focus-ring"
-              >
-                ▶ Watch demo video
-              </a>
-            )}
+  <a
+    href={product.videoUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block bg-marigold-500 hover:bg-marigold-600 text-white font-bold px-5 py-2.5 rounded-md transition-colors focus-ring"
+  >
+    ▶ Watch demo video
+  </a>
+)}
           </div>
         )}
       </div>
