@@ -46,21 +46,17 @@ export default function Navbar() {
             <span className="block w-6 h-0.5 bg-white rounded" />
           </button>
 
-          {/* Logo */}
-          <Link
-            href="/"
-            className="shrink-0 focus-ring leading-tight max-w-[130px] sm:max-w-none"
-          >
-            <span className="font-display text-2xl sm:text-3xl font-700 tracking-tight block">
-              Bazaar<span className="text-marigold-400">io</span>
-            </span>
-
-            <span className="marquee-wrap block">
-              <span className="marquee-text font-display font-extrabold text-[10px] sm:text-[12px] text-marigold-400 tracking-wide">
-                ✦ Presented by Rohit Verma ✦
-              </span>
-            </span>
-          </Link>
+         {/* Logo */}
+<Link
+  href="/"
+  className="shrink-0 flex items-center focus-ring"
+>
+  <img
+    src="/bazaario-logo.png"
+    alt="Bazaario"
+    className="w-[140px] sm:w-[180px] h-auto object-contain"
+  />
+</Link>
 
           {/* Desktop Search */}
           <form
